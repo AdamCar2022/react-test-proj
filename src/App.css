@@ -1,0 +1,9 @@
+.book-item {
+  border-radius: 10px;
+  background-color: #333;
+  max-width: 33%;
+}
+
+.book-item img {
+  border-radius: 10px;
+}
