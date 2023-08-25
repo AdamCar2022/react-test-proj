@@ -1,22 +1,56 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import BookCard from "./components/BookCard";
 import "./App.css";
-import { Books } from "./data/Books";
+import { Books, BookProps } from "./data/Books";
+
+type Action = {
+  type: string;
+  id: number;
+}
+
+
+
+const reducer = (state: BookProps[], action: Action) => {
+  switch (action.type) {
+    case "COMPLETE":
+      return state.map((book) => {
+        if (book.id === action.id) {
+          return { ...book, isReading: !book.isReading };
+        } else {
+          book.isReading = false;
+          return book;
+        }
+      });
+    default:
+      return state;
+  }
+};
+type State = BookProps[];
+
 
 function App() {
-  console.log(Books[0]);
+  const [state, dispatch] = useReducer<(state: State, action: Action) => State>(reducer, Books);
+
+
+
   return (
-    <div className="book-item-container">
-      {Books.map((book) => (
-        <BookCard
-          title={book.title}
-          author={book.author}
-          coverImage={book.coverImage}
-          progress={book.progress}
-          isReading={book.isReading}
-        />
-      ))}
-    </div>
+    <>
+      <code>{JSON.stringify(state, null, 2)}</code>
+      <div className="book-item-container">
+        {state.map((book) => (
+          <BookCard
+            id={book.id}
+            title={book.title}
+            author={book.author}
+            coverImage={book.coverImage}
+            progress={book.progress}
+            isReading={book.isReading}
+            handleComplete={() => dispatch({ type: "COMPLETE", id: book.id })}
+
+          />
+        ))}
+      </div>
+    </>
   );
 }
 
