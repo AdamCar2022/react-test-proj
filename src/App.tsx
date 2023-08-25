@@ -6,15 +6,17 @@ import { Books } from "./data/Books";
 function App() {
   console.log(Books[0]);
   return (
-    <>
-      <div>
+    <div className="book-item-container">
+      {Books.map((book) => (
         <BookCard
-          title={Books[0].title}
-          author={Books[0].author}
-          coverImage={Books[0].coverImage}
+          title={book.title}
+          author={book.author}
+          coverImage={book.coverImage}
+          progress={book.progress}
+          isReading={book.isReading}
         />
-      </div>
-    </>
+      ))}
+    </div>
   );
 }
 

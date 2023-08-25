@@ -1,9 +1,44 @@
+.book-item-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-content: flex-start;
+}
+
 .book-item {
   border-radius: 10px;
-  background-color: #333;
-  max-width: 33%;
+  background-color: #913535;
+  width: 250px;
+  height: 322.5px;
+  display: inline-block;
+  padding: 1em;
+}
+
+.book-item-info {
+  display: block;
+  width: 100%;
+}
+
+.book-item-info h4 {
+  margin: 0;
+  display: block;
+  height: 70px;
+  font-size: 15px;
+}
+
+.book-item-info em {
+  margin: 0;
+  font-size: 12px;
 }
 
 .book-item img {
   border-radius: 10px;
 }
+
+.book-item progress{
+  border: none;
+  accent-color: red;
+}
+
